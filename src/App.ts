@@ -31,7 +31,7 @@ class App {
 
     private database (): void {
         mongoose.connect(
-            'mongodb://localhost:27017/upload',
+            process.env.DATABASE_URL,
             { useNewUrlParser: true }
         )
     }

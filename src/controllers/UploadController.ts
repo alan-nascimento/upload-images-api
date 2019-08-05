@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import Post from '../models/PostSchema'
+import Post from '../models/Post'
 
 class UploadController {
     public async create (req: Request, res: Response): Promise<Response> {

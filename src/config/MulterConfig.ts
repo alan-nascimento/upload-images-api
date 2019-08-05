@@ -3,11 +3,12 @@ import path from 'path'
 import crypto from 'crypto'
 import aws from 'aws-sdk'
 import multerS3 from 'multer-s3'
+import dotenv from 'dotenv'
 
 class MulterConfig {
     private dest;
 
-    private storage;
+    public storage;
 
     private limits;
 
@@ -16,6 +17,8 @@ class MulterConfig {
     private s3;
 
     public constructor () {
+        dotenv.config()
+
         this.dest = path.resolve(__dirname, '..', '..', 'tmp', 'uploads')
 
         this.storage = this.storageTypes().s3
@@ -40,7 +43,7 @@ class MulterConfig {
         }
     }
 
-    private storageTypes (): any {
+    public storageTypes (): any {
         return { local: multer.diskStorage({
             destination: (req, file, cb): void => {
                 cb(null, path.resolve(__dirname, '..', '..', 'tmp', 'uploads'))
