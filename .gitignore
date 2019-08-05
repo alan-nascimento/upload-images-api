@@ -3,3 +3,6 @@ node_modules
 
 #images-uploaded
 tmp
+
+#env-config
+.env

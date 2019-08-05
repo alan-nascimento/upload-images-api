@@ -1,6 +1,7 @@
 import express from 'express'
 import routes from './routes'
 import mongoose from 'mongoose'
+import * as dotenv from 'dotenv'
 
 class App {
     public express: express.Application;
@@ -10,6 +11,7 @@ class App {
 
         this.database()
         this.routes()
+        this.dotEnv()
     }
 
     private database (): void {
@@ -21,6 +23,10 @@ class App {
 
     private routes (): void {
         this.express.use(routes)
+    }
+
+    private dotEnv (): void {
+        dotenv.config()
     }
 }
 
