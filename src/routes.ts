@@ -1,22 +1,16 @@
 import { Router } from 'express'
 import multer from 'multer'
 import MulterConfig from './config/MulterConfig'
-import Post from './models/PostSchema'
+import UploadController from './controllers/UploadController'
+import multerS3 from 'multer-s3'
+import aws from 'aws-sdk'
 
 const routes = Router()
 
-routes.post(
-    '/upload',
-    multer(MulterConfig).single('file'),
-    async (req, res): any => {
-        console.log(req.file)
+const storageS3 = new aws.S3({
+    accessKeyId: ''
+})
 
-        const { originalname: name, size, filename: key } = req.file
-
-        const post = await Post.create({ name, size, key, url: '' })
-
-        return res.json(post)
-    }
-)
+routes.post('/upload', multer(MulterConfig).single('file'), UploadController.create)
 
 export default routes
