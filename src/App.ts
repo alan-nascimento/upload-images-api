@@ -1,5 +1,6 @@
 import express from 'express'
 import routes from './routes'
+import mongoose from 'mongoose'
 
 class App {
     public express: express.Application;
@@ -7,7 +8,15 @@ class App {
     public constructor () {
         this.express = express()
 
+        this.database()
         this.routes()
+    }
+
+    private database (): void {
+        mongoose.connect(
+            'mongodb://localhost:27017/upload',
+            { useNewUrlParser: true }
+        )
     }
 
     private routes (): void {

@@ -1,15 +1,21 @@
 import { Router } from 'express'
 import multer from 'multer'
-import Multer from './config/Multer'
+import MulterConfig from './config/MulterConfig'
+import Post from './models/PostSchema'
 
 const routes = Router()
 
 routes.post(
-    '/uploads',
-    multer(Multer).single('file'),
-    (req, res): Promise<Response> => {
+    '/upload',
+    multer(MulterConfig).single('file'),
+    async (req, res): any => {
         console.log(req.file)
-        return res.json({ hello: 'World!' })
+
+        const { originalname: name, size, filename: key } = req.file
+
+        const post = await Post.create({ name, size, key, url: '' })
+
+        return res.json(post)
     }
 )
 

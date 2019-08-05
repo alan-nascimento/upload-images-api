@@ -2,7 +2,7 @@ import multer from 'multer'
 import path from 'path'
 import crypto from 'crypto'
 
-class Multer {
+class MulterConfig {
     private dest;
 
     private storage;
@@ -35,7 +35,7 @@ class Multer {
             fileSize: 2 * 1024 * 1024
         }
 
-        this.fileFilter = (req, file, cb): BlobCallback => {
+        this.fileFilter = (req, file, cb): void => {
             const allowedMimes = [
                 'image/jpeg',
                 'image/pjpeg',
@@ -52,4 +52,4 @@ class Multer {
     }
 }
 
-export default new Multer()
+export default new MulterConfig()
