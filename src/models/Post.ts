@@ -1,9 +1,11 @@
 import { Schema, model } from 'mongoose'
-import MulterConfig from '../config/MulterConfig'
-import aws from 'aws-sdk'
-import fs from 'fs'
-import path from 'path'
 import { promisify } from 'util'
+import aws from 'aws-sdk'
+import path from 'path'
+import fs from 'fs'
+
+import MulterConfig from '../config/MulterConfig'
+import StorageTypes from '../config/StorageTypes'
 
 const s3 = new aws.S3()
 
@@ -23,7 +25,7 @@ PostSchema.pre('save', function (): void {
 })
 
 PostSchema.pre('remove', function (): any {
-    if (MulterConfig.storage == MulterConfig.storageTypes().s3) {
+    if (MulterConfig.storage === StorageTypes.s3) {
         console.log('here')
         return s3.deleteObject({
             Bucket: process.env.BUCKET_NAME,
