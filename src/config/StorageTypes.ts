@@ -6,7 +6,7 @@ import multerS3 from 'multer-s3'
 import dotenv from 'dotenv'
 
 class StorageTypes {
-    public local
+    public local: multer.StorageEngine
 
     public s3: multer.StorageEngine
 

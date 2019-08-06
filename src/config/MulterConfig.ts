@@ -13,7 +13,7 @@ class MulterConfig {
     public constructor () {
         this.dest = path.resolve(__dirname, '..', '..', 'tmp', 'uploads')
 
-        this.storage = StorageTypes.s3
+        this.storage = StorageTypes.local
 
         this.limits = {
             fileSize: 2 * 1024 * 1024
