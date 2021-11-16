@@ -5,7 +5,7 @@
     "build": "sucrase ./src -d ./dist --transforms typescript, imports"
   },
   "dependencies": {
-    "aws-sdk": "^2.504.0",
+    "aws-sdk": "^2.814.0",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
